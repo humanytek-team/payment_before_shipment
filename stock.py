@@ -26,7 +26,7 @@ class StockPicking(models.Model):
                     #if invoice.state not in ('cancel','done')
                     if invoice.payment_term_id and invoice.payment_term_id.name.lower() == _CONTADO:
                         #print 'xxxx'
-                        if invoice.state != 'paid' and invoice.type in ('out_invoice',):
+                        if invoice.state not in ('paid','cancel') and invoice.type in ('out_invoice',):
                             raise UserError(_('No se puede ralizar el movimiento\nLa factura %s no esta pagada'%(invoice.number,)))
                         # if not invoice.payment_ids:
                         #     raise UserError(_('La factura no tiene pagos aplicados'))
